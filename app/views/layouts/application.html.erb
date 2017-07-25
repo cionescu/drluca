@@ -1,14 +1,83 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Drluca</title>
-    <%= csrf_meta_tags %>
+<html lang="en">
+<head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+ <!-- Meta -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dr. Elena Luiza Luca, second year medical student at the Ovidius University, Constanta.">
+  <meta name="author" content="Catalin Ionescu">
 
-  <body>
+  <meta property="og:image" content="<%= image_url('drluca-head.png') %>" />
+  <meta property="og:title" content="Dr. Elena Luiza Luca" />
+  <meta property="og:url" content="https://www.drluca.dental" />
+  <meta property="og:site_name" content="Dr. Elena Luiza Luca"/>
+  <meta property="og:type" content="blog"/>
+
+  <!-- Favicon-->
+  <link rel="icon" href="assets/img/facicon/114x114.png" type="image/gif">
+
+  <!-- Title-->
+  <title>
+    Dr. Elena Luiza Luca
+  </title>
+
+  <%= csrf_meta_tags %>
+
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+
+  <!-- Stylesheet-->
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'vendor', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+</head>
+<body>
+  <!-- LOADER TEMPLATE -->
+  <div id="page-loader">
+    <div class="loader-icon fa fa-spin colored-border"></div>
+  </div>
+  <!-- /LOADER TEMPLATE -->
+
+  <%#= render "nav" %>
+
+  <section class="intro-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <%= image_tag asset_path("drluca-head"), class: "img-rounded", alt: "Hero Image Dr. Luca" %>
+          <h1 class="hero-title"><strong>Dr. Elena Luiza Luca</strong> </h1>
+          <p class="hero-tagline">
+             I am
+            <span class="typelist-skill" data-typist="in love with anatomy., in love with bearded guys., in love with jazz music and theatre.">a dentistry student.</span>
+          </p>
+        </div> <!-- END col-sm-12-->
+      </div> <!-- END row-->
+    </div> <!-- END container-->
+  </section> <!-- END intro-hero-->
+
+  <main class="content-wrap">
     <%= yield %>
-  </body>
+  </main> <!-- END content-wrap-->
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <p>
+            Made with ❤️ by
+            <%= link_to "Catalin", "https://cionescu.github.io", target: "_blank" %>
+          </p>
+        </div>
+      </div> <!-- END row-->
+    </div> <!-- END container-->
+  </footer> <!-- END site-footer-->
+
+  <div class="scroll-top">
+    <span class="fa fa-chevron-up"></span>
+  </div>
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'vendor', 'data-turbolinks-track': 'reload' %>
+</body>
 </html>
