@@ -372,7 +372,7 @@ input, textarea {
     opacity: 1; } }
 
 .intro-hero {
-  background: url(../../assets/img/intro-hero.jpg) no-repeat scroll 0 0;
+  background: asset-url('intro-hero.jpg') no-repeat scroll 0 0;
   background-size: cover;
   padding-top: 90px;
   padding-bottom: 120px;
