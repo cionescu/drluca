@@ -25,134 +25,54 @@
   <!-- Stylesheet-->
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'vendor', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <!-- <link rel="stylesheet" href="assets/vendor/owl.carousel/dist/assets/owl.carousel.min.css"> -->
-  <!-- <link rel="stylesheet" href="assets/vendor/linearicons/style.css"> -->
-  <!-- <link rel="stylesheet" href="assets/vendor/animate.css/animate.min.css"> -->
-
 
 </head>
 <body>
-<!-- LOADER TEMPLATE -->
-<div id="page-loader">
-  <div class="loader-icon fa fa-spin colored-border"></div>
-</div>
-<!-- /LOADER TEMPLATE -->
-
-
-
-<nav id="nav">
-  <div class="sm-nav-toggler">
-    <span class="lnr lnr-menu"></span>
-    <span class="lnr lnr-cross"></span>
+  <!-- LOADER TEMPLATE -->
+  <div id="page-loader">
+    <div class="loader-icon fa fa-spin colored-border"></div>
   </div>
-  <ul class="main-menu">
-   <li>
-     <a href="index.html">
-       <span class="lnr lnr-home"></span>
-       <span class="nav-text">home</span>
-     </a>
-   </li>
-   <li>
-     <a class="scrolling" href="index.html#about">
-       <span class="lnr lnr-user"></span>
-       <span class="nav-text">About</span>
-     </a>
-   </li>
-   <li>
-     <a href="resume.html">
-       <span class="lnr lnr-license"></span>
-       <span class="nav-text">resume</span>
-     </a>
-   </li>
-   <li>
-     <a href="services.html">
-       <span class="lnr lnr-cog"></span>
-       <span class="nav-text">services</span>
-     </a>
-   </li>
-   <li>
-     <a href="portfolio.html">
-       <span class="lnr lnr-briefcase"></span>
-       <span class="nav-text">portfolio</span>
-     </a>
-   </li>
-   <li>
-     <a href="blog.html">
-       <span class="lnr lnr-leaf"></span>
-       <span class="nav-text">blog</span>
-     </a>
-   </li>
-   <li>
-     <a href="contact.html">
-       <span class="lnr lnr-phone-handset"></span>
-       <span class="nav-text">Contact</span>
-     </a>
-   </li>
-  </ul>
- <div class="menu-bg"></div>
-</nav> <!-- END nav-->
+  <!-- /LOADER TEMPLATE -->
 
-<section class="intro-hero">
-  <div class="container">
-    <div class="row">
+  <%#= render "nav" %>
 
-      <div class="col-sm-12 text-center">
-        <%= image_tag asset_path("drluca-head"), class: "img-rounded", alt: "Hero Image Dr. Luca" %>
-        <h1 class="hero-title"><strong>Dr. Elena Luiza Luca</strong> </h1>
-        <p class="hero-tagline">
-           I am
-          <span class="typelist-skill" data-typist="in love with anatomy, in love with bearded guys, in love with jazz music and theatre.">a dentistry student</span>
-        </p>
-      </div> <!-- END col-sm-12-->
+  <section class="intro-hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <%= image_tag asset_path("drluca-head"), class: "img-rounded", alt: "Hero Image Dr. Luca" %>
+          <h1 class="hero-title"><strong>Dr. Elena Luiza Luca</strong> </h1>
+          <p class="hero-tagline">
+             I am
+            <span class="typelist-skill" data-typist="in love with anatomy., in love with bearded guys., in love with jazz music and theatre.">a dentistry student.</span>
+          </p>
+        </div> <!-- END col-sm-12-->
+      </div> <!-- END row-->
+    </div> <!-- END container-->
+  </section> <!-- END intro-hero-->
 
-      <!-- <div class="col-sm-6">
-        <ul class="list-inline social social-intro">
-          <li><a href=""><i class="fa fa-facebook"></i></a></li>
-          <li><a href=""><i class="fa fa-twitter"></i></a></li>
-          <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-          <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-          <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-        </ul>
-      </div> -->
-    </div> <!-- END row-->
-  </div> <!-- END container-->
-</section> <!-- END intro-hero-->
+  <main class="content-wrap">
+    <%= yield %>
+  </main> <!-- END content-wrap-->
 
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <p>
+            Made with ❤️ by
+            <%= link_to "Catalin", "https://cionescu.github.io", target: "_blank" %>
+          </p>
+        </div>
+      </div> <!-- END row-->
+    </div> <!-- END container-->
+  </footer> <!-- END site-footer-->
 
-
-
-
-<main class="content-wrap">
-  <%= yield %>
-</main> <!-- END content-wrap-->
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <p>
-          Made with ❤️ by
-          <%= link_to "Catalin", "https://cionescu.github.io", target: "_blank" %>
-        </p>
-      </div>
-    </div> <!-- END row-->
-  </div> <!-- END container-->
-</footer> <!-- END site-footer-->
-
-<div class="scroll-top">
-  <span class="lnr lnr-chevron-up"></span>
-</div>
+  <div class="scroll-top">
+    <span class="fa fa-chevron-up"></span>
+  </div>
 
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'vendor', 'data-turbolinks-track': 'reload' %>
-
- <!--scripts-->
-  <script src="assets/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
-  <script src="assets/vendor/isotope/dist/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/matchHeight/dist/jquery.matchHeight-min.js"></script>
-  <script src="assets/vendor/wow/dist/wow.min.js"></script>
-  <script src="assets/js/imagesloaded.js"></script>
-  <script src="assets/js/count.js"></script>
-  <script src="assets/js/theme.js"></script>
 </body>
 </html>
