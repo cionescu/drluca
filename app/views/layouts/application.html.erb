@@ -14,17 +14,14 @@
   <meta property="og:site_name" content="Dr. Elena Luiza Luca"/>
   <meta property="og:type" content="blog"/>
 
-  <!-- Favicon-->
-  <link rel="icon" href="assets/img/facicon/114x114.png" type="image/gif">
+  <link rel="icon" href="assets/img/favicon/114x114.png" type="image/gif">
 
-  <!-- Title-->
   <title>
     Dr. Elena Luiza Luca
   </title>
 
   <%= csrf_meta_tags %>
 
-  <!-- Google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
   <!-- Stylesheet-->
@@ -33,32 +30,11 @@
 
 </head>
 <body>
-  <!-- LOADER TEMPLATE -->
   <div id="page-loader">
     <div class="loader-icon fa fa-spin colored-border"></div>
   </div>
-  <!-- /LOADER TEMPLATE -->
 
-  <%#= render "nav" %>
-
-  <section class="intro-hero">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 text-center">
-          <%= image_tag "drluca-head.png", class: "img-rounded", alt: "Hero Image Dr. Luca" %>
-          <h1 class="hero-title"><strong>Dr. Elena Luiza Luca</strong> </h1>
-          <p class="hero-tagline">
-             I am
-            <span class="typelist-skill" data-typist="in love with anatomy., in love with bearded guys., in love with jazz music and theatre.">a dentistry student.</span>
-          </p>
-        </div> <!-- END col-sm-12-->
-      </div> <!-- END row-->
-    </div> <!-- END container-->
-  </section> <!-- END intro-hero-->
-
-  <main class="content-wrap">
-    <%= yield %>
-  </main> <!-- END content-wrap-->
+  <%= yield %>
 
   <footer class="site-footer">
     <div class="container">
@@ -69,9 +45,9 @@
             <%= link_to "Catalin", "https://cionescu.github.io", target: "_blank" %>
           </p>
         </div>
-      </div> <!-- END row-->
-    </div> <!-- END container-->
-  </footer> <!-- END site-footer-->
+      </div>
+    </div>
+  </footer>
 
   <div class="scroll-top">
     <span class="fa fa-chevron-up"></span>
