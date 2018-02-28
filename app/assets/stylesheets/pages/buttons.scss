@@ -1,0 +1,89 @@
+.button {
+  $primary: #1aa56e; /* GREEN */
+  $secondary: #FF8564; /* ORANGE */
+  $link: #5ab9ea; /* NAVBAR BLUE */
+  $pink: #ff55a0; /* REGISTER BUTTON PINK */
+  $danger: #d9534f; /* DANGER STYLES */
+  $grey: #757575; /* GREY */
+
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+  margin: 15px 10px 15px 0;
+  background-image: none;
+  background-color: transparent;
+
+  &.no-margin {
+    margin: 0;
+  }
+
+  &.primary {
+    color: $primary;
+    border-color: $primary;
+
+    &:hover {
+      color: #fff;
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  &.secondary {
+    color: $secondary;
+    border-color: $secondary;
+
+    &:hover {
+      color: #fff;
+      background-color: $secondary;
+      border-color: $secondary;
+    }
+  }
+
+  &.link {
+    color: $link;
+    border-color: $link;
+    margin: 0;
+
+    &:hover {
+      color: #fff;
+      background-color: $link;
+      border-color: $link;
+    }
+
+    &.margin-left {
+      margin-left: 15px;
+    }
+  }
+
+  &.pink {
+    color: $pink;
+    border-color: $pink;
+
+    &:hover {
+      color: #fff;
+      background-color: $pink;
+      border-color: $pink;
+    }
+  }
+
+  &.danger {
+    color: $danger;
+    border-color: $danger;
+
+    &:hover {
+      color: #fff;
+      background-color: $danger;
+      border-color: $danger;
+    }
+  }
+}

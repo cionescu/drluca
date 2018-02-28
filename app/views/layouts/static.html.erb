@@ -24,8 +24,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
-  <!-- Stylesheet-->
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'vendor', media: 'all', 'data-turbolinks-track': 'reload' %>
 
 </head>
 <body>
@@ -48,6 +47,10 @@
     </div>
   </footer>
 
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <div class="scroll-top">
+    <span class="fa fa-chevron-up"></span>
+  </div>
+
+  <%= javascript_include_tag 'vendor', 'data-turbolinks-track': 'reload' %>
 </body>
 </html>

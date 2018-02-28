@@ -1,1 +1,17 @@
-<button id="search">Cauta</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 text-center">
+      <button id="search" class="button link full-width">Vorbeste</button>
+    </div>
+    <div class="col-sm-6">
+      <%= form_tag search_dict_index_path, method: :get, remote: true, class: "search-form" do %>
+        <div class="input-group mb-3">
+          <%= text_field_tag :q, params[:q], class: "form-control word" %>
+          <div class="input-group-append">
+            <button type="submit" class="button link">Cauta</button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

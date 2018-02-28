@@ -1,6 +1,11 @@
+//= require jquery
+//= require jquery_ujs
 //= require 'typist'
 //= require 'jquery.magnific-popup.min'
 //= require 'owl.carousel.min'
 //= require 'jquery.matchHeight-min'
 //= require 'wow.min'
 //= require 'isotope.pkgd.min'
+//= require imagesloaded
+//= require theme
+//= require count
