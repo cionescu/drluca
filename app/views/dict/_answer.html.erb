@@ -1,1 +1,7 @@
-<h1>Answer</h1>
+<% if @answer.present? %>
+  <%= raw @answer %>
+<% else %>
+  <p class="text-muted text-center">
+    Cuvantul <%= @query %> nu a fost gasit
+  </p>
+<% end %>
