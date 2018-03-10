@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
 
 import { AppComponent } from './app.component';
 
@@ -8,9 +9,12 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
-  providers: [],
+  providers: [
+    Ng2Cable,
+    Broadcaster
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
