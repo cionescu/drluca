@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :trivia, only: [:index]
+
   root to: "home#index"
 end
