@@ -3,6 +3,5 @@
 <%= javascript_pack_tag 'trivia' %>
 
 <script type="text/javascript">
-  window.ENV ||= {}
-  window.ENV["quizzes"] = <%= Quiz.pluck(:id, :name) %>
+  window.quizzes = <%= raw Quiz.pluck(:id, :name) %>
 </script>
