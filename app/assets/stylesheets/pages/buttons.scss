@@ -86,4 +86,15 @@
       border-color: $danger;
     }
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    color: $grey;
+    border-color: $grey;
+    &:hover {
+      color: $grey;
+      background-color: transparent;
+    }
+  }
 }

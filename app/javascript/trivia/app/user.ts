@@ -1,20 +1,23 @@
 export interface UserInterface {
   name: string;
-  email: string;
+  quiz: number;
 }
 
 export class User {
   public name: string;
-  public email: string;
+  public quiz: number;
 
   constructor(userInterface?: UserInterface) {
     if (userInterface) {
       this.name = userInterface.name;
-      this.email = userInterface.email;
+      this.quiz = userInterface.quiz;
+    } else {
+      this.name = null;
+      this.quiz = null;
     }
   }
 
   isValid() {
-    return this.name && this.email;
+    return this.name !== null && this.quiz !== null;
   }
 }

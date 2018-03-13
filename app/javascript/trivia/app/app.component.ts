@@ -8,12 +8,13 @@ import { User } from './user';
     <div class="row">
       <div class="col-sm-6 offset-sm-3">
         <div class="form-group">
-          <label for="account-name">Name</label>
-          <input [(ngModel)]="user.name" type="text" class="form-control" id="account-name" placeholder="Name">
+          <input [(ngModel)]="user.name" type="text" class="form-control" id="account-name" placeholder="Numele tau">
         </div>
         <div class="form-group">
-          <label for="account-email">Email address</label>
-          <input [(ngModel)]="user.email" type="email" class="form-control" id="account-email" placeholder="Enter email">
+          <label for="account-name">Alege un Quiz</label>
+          <select [(ngModel)]="user.quiz" class="form-control">
+            <option *ngFor="let opt of options" [ngValue]="opt[0]">{{opt[1]}}</option>
+          </select>
         </div>
         <button class="button primary" (click)="submit()" [disabled]="!user.isValid() || submitted">
           Login
@@ -25,17 +26,22 @@ import { User } from './user';
 })
 export class AppComponent {
   public user: User;
+  public options: Array<[number, string]>;
 
   constructor(private ng2cable: Ng2Cable) {
     this.ng2cable.setCable(`ws://localhost:3000/cable`);
     this.user = new User();
+    this.options = (<any>window).quizzes;
   }
 
-  ngOnInit() {
-    this.ng2cable.subscription = this.ng2cable.cable.subscriptions.create({ channel: 'QuizChannel' }, {
-      received: (data) => {
-        console.log(data)
-      }
-    });
+  submit() {
+    this.ng2cable.subscription = this.ng2cable
+      .cable
+      .subscriptions
+      .create({ channel: 'QuizChannel', user: this.user.name, quiz: this.user.quiz }, {
+        received: (data) => {
+          console.log(data)
+        }
+      });
   }
 }
