@@ -1,19 +1,18 @@
 export interface UserInterface {
   name: string;
   quiz: number;
+  submitted: boolean;
 }
 
 export class User {
-  public name: string;
-  public quiz: number;
+  public name = null;
+  public quiz = null;
+  public submitted = false;
 
   constructor(userInterface?: UserInterface) {
     if (userInterface) {
       this.name = userInterface.name;
       this.quiz = userInterface.quiz;
-    } else {
-      this.name = null;
-      this.quiz = null;
     }
   }
 

@@ -4,10 +4,12 @@ import { Ng2Cable, Broadcaster } from 'ng2-cable/js/index';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { QuizComponent } from './components/quiz.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

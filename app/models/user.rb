@@ -19,6 +19,8 @@
 #
 
 class User < ApplicationRecord
+  CHANNEL = "user_channel".freeze
+
   belongs_to :quiz
 
   enum status: {
