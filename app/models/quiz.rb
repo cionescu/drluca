@@ -34,4 +34,15 @@ class Quiz < ApplicationRecord
     question = Question.find(questions[current_question])
     ActionCable.server.broadcast CHANNEL, QuestionSerializer.new(question).as_json
   end
+
+  def next_question
+    Rails.logger.warn [current_question, questions.count].inspect
+    if current_question == questions.count - 1
+      finished!
+      Rails.logger.warn "FINISHED THE QUIZ"
+    else
+      increment! :current_question
+      broadcast_current_question
+    end
+  end
 end

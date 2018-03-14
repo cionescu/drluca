@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from '../models/question';
 
 @Component({
@@ -17,13 +17,18 @@ import { Question } from '../models/question';
 })
 export class QuestionComponent {
   @Input() question: Question;
+  @Output() onSelected = new EventEmitter();
   public selectedAnswer: string;
+
+  constructor() {
+    this.selectedAnswer = null;
+  }
 
   selected(event: any) {
     if (!this.selectedAnswer) {
-      console.log(event.srcElement.textContent);
       this.selectedAnswer = event.srcElement.textContent;
-      console.log(`*${this.selectedAnswer}*`, this.question.answers)
+      this.onSelected.emit(this.selectedAnswer);
+      this.selectedAnswer = null;
     }
   }
 }

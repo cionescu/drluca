@@ -24,6 +24,14 @@ class User < ApplicationRecord
   belongs_to :quiz
 
   enum status: {
-    ready: 0
+    online: 0,
+    offline: 1
   }
+
+  def self.broadcast_for quiz
+    users = quiz.users.map do |user|
+      UserSerializer.new(user).as_json
+    end
+    ActionCable.server.broadcast User::CHANNEL, message: users
+  end
 end

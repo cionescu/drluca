@@ -5,12 +5,16 @@ class UserChannel < ApplicationCable::Channel
     quiz = Quiz.find_by!(name: params[:quiz])
     user.quiz = quiz
     user.save!
-    users = quiz.users.map do |user|
-      UserSerializer.new(user).as_json
-    end
-    ActionCable.server.broadcast User::CHANNEL, message: users
+    user.online!
+    User.broadcast_for(quiz)
   end
 
   def unsubscribed
+    Rails.logger.warn params.inspect
+    quiz = Quiz.find_by!(name: params[:quiz])
+    if user = User.find_by(name: params[:user])
+      user.offline!
+      User.broadcast_for(quiz)
+    end
   end
 end

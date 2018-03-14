@@ -7,7 +7,7 @@ import { Question } from '../models/question';
   selector: 'quiz',
   template: `
     <p class="text-muted">{{user.name}}</p>
-    <question [question]="question"></question>
+    <question [question]="question" (onSelected)="onSelected($event)"></question>
   `
 })
 export class QuizComponent implements OnInit {
@@ -28,5 +28,9 @@ export class QuizComponent implements OnInit {
           this.question = new Question(data);
         }
       });
+  }
+
+  onSelected(answer) {
+    this.ng2cable.subscription.perform('selected', { 'answer': answer, user: this.user.name, quiz: this.user.quiz })
   }
 }
