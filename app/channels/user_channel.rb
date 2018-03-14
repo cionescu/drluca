@@ -3,7 +3,7 @@ class UserChannel < ApplicationCable::Channel
     stream_from User::CHANNEL
     Rails.logger.warn params.inspect
     user = User.find_or_initialize_by(name: params[:user])
-    quiz = Quiz.find(params[:quiz])
+    quiz = Quiz.find_by!(name: params[:quiz])
     user.quiz = quiz
     user.save!
     Rails.logger.warn user.inspect

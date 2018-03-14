@@ -12,8 +12,10 @@
 #  updated_at        :datetime         not null
 #
 
-require 'rails_helper'
+class QuestionSerializer < ActiveModel::Serializer
+  attributes :title, :url, :answer, :incorrect_answers, :answers
 
-RSpec.describe Question, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  def answers
+    object.incorrect_answers << object.answer
+  end
 end

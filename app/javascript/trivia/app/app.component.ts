@@ -13,7 +13,7 @@ import { User } from './models/user';
         <div class="form-group">
           <label for="account-name">Alege un Quiz</label>
           <select [(ngModel)]="user.quiz" class="form-control">
-            <option *ngFor="let opt of options" [ngValue]="opt[0]">{{opt[1]}}</option>
+            <option *ngFor="let opt of options" [ngValue]="opt" [selected]="opt == user.quiz">{{opt}}</option>
           </select>
         </div>
         <button class="button primary" (click)="submit()" [disabled]="!user.isValid()">
@@ -22,12 +22,11 @@ import { User } from './models/user';
       </div>
     </div>
     <quiz [user]="user" *ngIf="user.submitted"></quiz>
-
   `
 })
 export class AppComponent {
   public user: User;
-  public options: Array<[number, string]>;
+  public options: Array<string>;
 
   constructor(private ng2cable: Ng2Cable) {
     this.ng2cable.setCable(`ws://localhost:3000/cable`);
@@ -41,9 +40,8 @@ export class AppComponent {
       .subscriptions
       .create({ channel: 'UserChannel', user: this.user.name, quiz: this.user.quiz }, {
         received: (data) => {
-          console.log(data)
+          this.user.save();
         }
       });
-    this.user.submitted = true;
   }
 }

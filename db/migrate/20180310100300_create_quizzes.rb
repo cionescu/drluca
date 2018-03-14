@@ -4,6 +4,7 @@ class CreateQuizzes < ActiveRecord::Migration[5.1]
       t.string :name
       t.jsonb :questions
       t.integer :current_question
+      t.integer :status
 
       t.timestamps
     end

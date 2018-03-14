@@ -8,11 +8,21 @@ import { User } from '../models/user';
     <p class="text-muted">{{user.name}}</p>
   `
 })
-export class QuizComponent {
+export class QuizComponent implements OnInit {
   @Input() user: User;
 
   constructor(private ng2cable: Ng2Cable) {
     this.ng2cable.setCable(`ws://localhost:3000/cable`);
-    console.log(this.user);
+  }
+
+  ngOnInit() {
+    this.ng2cable.subscription = this.ng2cable
+      .cable
+      .subscriptions
+      .create({ channel: 'QuizChannel', user: this.user.name, quiz: this.user.quiz }, {
+        received: (data) => {
+          console.log(data)
+        }
+      });
   }
 }

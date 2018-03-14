@@ -13,11 +13,11 @@ import { QuizComponent } from './components/quiz.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     Ng2Cable,
-    Broadcaster
+    Broadcaster,
   ],
   bootstrap: [AppComponent]
 })
