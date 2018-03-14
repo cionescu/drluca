@@ -1,5 +1,6 @@
 <script type="text/javascript">
   window.quizzes = <%= raw Quiz.pluck(:name) %>
+  window.host = "<%= request.env["HTTP_HOST"] %>"
 </script>
 
 <trivia>Loading...</trivia>

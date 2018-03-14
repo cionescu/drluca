@@ -15,7 +15,7 @@ export class QuizComponent implements OnInit {
   public question: Question;
 
   constructor(private ng2cable: Ng2Cable) {
-    this.ng2cable.setCable(`ws://localhost:3000/cable`);
+    this.ng2cable.setCable(`ws://${(<any>window).host}/cable`);
   }
 
   ngOnInit() {

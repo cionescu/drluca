@@ -16,6 +16,7 @@ class QuestionSerializer < ActiveModel::Serializer
   attributes :title, :url, :answer, :incorrect_answers, :answers
 
   def answers
-    object.incorrect_answers << object.answer
+    arr = object.incorrect_answers << object.answer
+    arr.shuffle
   end
 end

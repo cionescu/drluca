@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Ng2Cable } from 'ng2-cable/js/index';
 import { User } from './models/user';
 
@@ -6,7 +6,7 @@ import { User } from './models/user';
   selector: 'trivia',
   template: `
     <div class="row" *ngIf="!user.submitted">
-      <div class="col-sm-6 offset-sm-3">
+      <div class="col-sm-6 offset-sm-3 styled-container">
         <div class="form-group">
           <input [(ngModel)]="user.name" type="text" class="form-control" id="account-name" placeholder="Numele tau">
         </div>
@@ -29,7 +29,7 @@ export class AppComponent {
   public options: Array<string>;
 
   constructor(private ng2cable: Ng2Cable) {
-    this.ng2cable.setCable(`ws://localhost:3000/cable`);
+    this.ng2cable.setCable(`ws://${(<any>window).host}/cable`);
     this.user = new User();
     this.options = (<any>window).quizzes;
   }
