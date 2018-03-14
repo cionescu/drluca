@@ -19,6 +19,6 @@ class Quiz < ApplicationRecord
   def start_quiz!
     update!(current_question: 0)
     question = Question.find(questions[0])
-    ActionCable.server.broadcast CHANNEL, message: QuestionSerializer.new(question).as_json
+    ActionCable.server.broadcast CHANNEL, QuestionSerializer.new(question).as_json
   end
 end
