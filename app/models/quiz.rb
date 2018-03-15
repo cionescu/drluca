@@ -23,7 +23,7 @@ class Quiz < ApplicationRecord
   }
 
   def start_quiz!
-    update!(current_question: 0)
+    update!(current_question: 0, questions: questions.shuffle)
     in_progress!
     question = Question.find(questions[0])
     ActionCable.server.broadcast CHANNEL, QuestionSerializer.new(question).as_json
@@ -40,6 +40,7 @@ class Quiz < ApplicationRecord
     if current_question == questions.count - 1
       finished!
       Rails.logger.warn "FINISHED THE QUIZ"
+      ActionCable.server.broadcast CHANNEL, finished: true
     else
       increment! :current_question
       broadcast_current_question
