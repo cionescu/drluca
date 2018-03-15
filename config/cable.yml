@@ -10,4 +10,5 @@ test:
 
 production:
   <<: *redis
+  url: <%= ENV["REDIS_URL"] %>
   channel_prefix: drluca_production
