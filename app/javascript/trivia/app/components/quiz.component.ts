@@ -17,6 +17,8 @@ export class QuizComponent implements OnInit {
   public showAnswer = false;
   public finished = false;
 
+  private timeout = 4000;
+
   constructor(private ng2cable: Ng2Cable) {
     this.ng2cable.setCable(`ws://${(<any>window).host}/cable`);
     this.selectedAnswer = null;
@@ -34,7 +36,7 @@ export class QuizComponent implements OnInit {
             this.showAnswer = true;
             (<any>window).setTimeout(() => {
                 this.finished = true;
-              }, 2000)
+              }, this.timeout)
             return;
           }
           let _new_question = new Question(data);
@@ -51,7 +53,7 @@ export class QuizComponent implements OnInit {
                 this.question = _new_question;
                 this.showAnswer = false;
                 this.selectedAnswer = null;
-              }, 2000)
+              }, this.timeout)
           }
         }
       });

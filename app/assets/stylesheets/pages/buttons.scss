@@ -38,6 +38,44 @@
     }
   }
 
+  &.correct, &.missed {
+    color: $primary;
+    border-color: $primary;
+
+    animation-duration: 0.3s;
+    animation-iteration-count: 10;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    animation-name: correct-blinking-background;
+  }
+
+  &.wrong {
+    color: $danger;
+    border-color: $danger;
+
+    animation-duration: 0.3s;
+    animation-iteration-count: 10;
+    animation-direction: alternate;
+    animation-timing-function: ease;
+    animation-name: wrong-blinking-background;
+  }
+
+  @-webkit-keyframes correct-blinking-background {
+    to {
+      background-color: $primary;
+      border-color: $primary;
+      color: #fff;
+    }
+  }
+
+  @-webkit-keyframes wrong-blinking-background {
+    to {
+      background-color: $danger;
+      border-color: $danger;
+      color: #fff;
+    }
+  }
+
   &.secondary {
     color: $secondary;
     border-color: $secondary;
