@@ -23,6 +23,7 @@ class Quiz < ApplicationRecord
   }
 
   def start_quiz!
+    reset_user_scores
     update!(current_question: 0, questions: questions.shuffle)
     in_progress!
     question = Question.find(questions[0])
@@ -33,6 +34,7 @@ class Quiz < ApplicationRecord
     return unless in_progress? && current_question.present?
     question = Question.find(questions[current_question])
     ActionCable.server.broadcast CHANNEL, QuestionSerializer.new(question).as_json
+    User.broadcast_for self
   end
 
   def next_question
@@ -42,8 +44,25 @@ class Quiz < ApplicationRecord
       Rails.logger.warn "FINISHED THE QUIZ"
       ActionCable.server.broadcast CHANNEL, finished: true
     else
+      if users_still_need_to_answer?
+        Rails.logger.warn "Users Still need to answer"
+        Rails.logger.warn "There are #{users.online.count} users. They answered: #{users.online.map{|u| u.score.count}.join(',')} questions. Current: #{current_question}"
+        return
+      end
       increment! :current_question
       broadcast_current_question
+    end
+  end
+
+  private
+
+  def reset_user_scores
+    users.update_all(score: [])
+  end
+
+  def users_still_need_to_answer?
+    users.online.any? do |user|
+      user.score.count != current_question + 1
     end
   end
 end

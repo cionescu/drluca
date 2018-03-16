@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, SimpleChange, OnChanges } from '@angular/core';
 import { Question } from '../models/question';
 
 @Component({
@@ -18,8 +18,12 @@ import { Question } from '../models/question';
         <button
           class="button"
           *ngFor="let answer of question.answers"
-          [disabled]="answer != oldSelected"
-          [ngClass]="{'correct': (answer == question.answer && answer == oldSelected), 'wrong': (answer == oldSelected && answer != question.answer), 'missed': (answer != oldSelected && answer == question.answer)}"
+          [disabled]="answer != selectedAnswer"
+          [ngClass]="{
+            'correct': (answer == question.answer && answer == selectedAnswer),
+            'wrong': (answer == selectedAnswer && answer != question.answer),
+            'missed': (answer != selectedAnswer && answer == question.answer)
+          }"
            >{{answer}}</button>
       </div>
     </div>
@@ -28,13 +32,12 @@ import { Question } from '../models/question';
     </div>
   `
 })
-export class QuestionComponent {
+export class QuestionComponent implements OnChanges {
   @Input() question: Question;
   @Input() showAnswer: boolean;
   @Input() finished: boolean;
   @Output() onSelected = new EventEmitter();
   public selectedAnswer: string;
-  public oldSelected: string;
 
   constructor() {
     this.selectedAnswer = null;
@@ -44,7 +47,11 @@ export class QuestionComponent {
     if (!this.selectedAnswer) {
       this.selectedAnswer = event.srcElement.textContent;
       this.onSelected.emit(this.selectedAnswer);
-      this.oldSelected = this.selectedAnswer;
+    }
+  }
+
+  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    if (changes.question) {
       this.selectedAnswer = null;
     }
   }

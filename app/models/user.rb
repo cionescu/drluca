@@ -8,6 +8,7 @@
 #  status     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  score      :jsonb
 #
 # Indexes
 #
@@ -29,9 +30,14 @@ class User < ApplicationRecord
   }
 
   def self.broadcast_for quiz
-    users = quiz.users.map do |user|
+    users = quiz.users.online.map do |user|
       UserSerializer.new(user).as_json
     end
     ActionCable.server.broadcast User::CHANNEL, message: users
+  end
+
+  def answered answer
+    self.score << answer
+    save!
   end
 end

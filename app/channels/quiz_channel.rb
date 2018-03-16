@@ -5,9 +5,21 @@ class QuizChannel < ApplicationCable::Channel
     quiz.broadcast_current_question
   end
 
-  def selected
+  def correct
+    handle_answer true
+  end
+
+  def wrong
+    handle_answer false
+  end
+
+  private
+
+  def handle_answer correct
     quiz = Quiz.find_by!(name: params[:quiz])
     user = User.find_by!(name: params[:user])
+    user.answered(correct)
+    Rails.logger.warn "QuizChannel Selected user after: #{user.score.inspect}"
     quiz.next_question
   end
 end

@@ -8,6 +8,7 @@
 #  status     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  score      :jsonb
 #
 # Indexes
 #

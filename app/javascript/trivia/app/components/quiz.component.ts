@@ -17,7 +17,7 @@ export class QuizComponent implements OnInit {
   public showAnswer = false;
   public finished = false;
 
-  private timeout = 4000;
+  private timeout = 3000;
 
   constructor(private ng2cable: Ng2Cable) {
     this.ng2cable.setCable(`ws://${(<any>window).host}/cable`);
@@ -61,6 +61,10 @@ export class QuizComponent implements OnInit {
 
   onSelected(answer) {
     this.selectedAnswer = answer;
-    this.ng2cable.subscription.perform('selected', { 'answer': answer, user: this.user.name, quiz: this.user.quiz });
+    if (this.question.answer === answer) {
+      this.ng2cable.subscription.perform('correct');
+    } else {
+      this.ng2cable.subscription.perform('wrong');
+    }
   }
 }

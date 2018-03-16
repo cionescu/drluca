@@ -8,6 +8,7 @@
 #  status     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  score      :jsonb
 #
 # Indexes
 #
@@ -19,9 +20,21 @@
 #
 
 class UserSerializer < ActiveModel::Serializer
-  attributes :name, :quiz, :status
+  attributes :name, :quiz, :status, :correct, :wrong, :total_score
 
   def quiz
     object.quiz.name
+  end
+
+  def correct
+    object.score.select{ |obj| obj }.count
+  end
+
+  def wrong
+    object.score.select{ |obj| !obj }.count
+  end
+
+  def total_score
+    object.score.count
   end
 end

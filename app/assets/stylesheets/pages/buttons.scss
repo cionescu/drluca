@@ -43,7 +43,7 @@
     border-color: $primary;
 
     animation-duration: 0.3s;
-    animation-iteration-count: 10;
+    animation-iteration-count: 50;
     animation-direction: alternate;
     animation-timing-function: ease;
     animation-name: correct-blinking-background;
@@ -54,7 +54,7 @@
     border-color: $danger;
 
     animation-duration: 0.3s;
-    animation-iteration-count: 10;
+    animation-iteration-count: 50;
     animation-direction: alternate;
     animation-timing-function: ease;
     animation-name: wrong-blinking-background;

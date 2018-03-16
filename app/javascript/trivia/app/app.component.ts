@@ -40,7 +40,7 @@ export class AppComponent {
       .subscriptions
       .create({ channel: 'UserChannel', user: this.user.name, quiz: this.user.quiz }, {
         received: (data) => {
-          console.log(data);
+          // console.log(data);
           this.user.save();
         }
       });
