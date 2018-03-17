@@ -1,4 +1,5 @@
 export interface QuestionInterface {
+  id: number;
   title: string;
   answers: Array<string>;
   answer: string;
@@ -6,6 +7,7 @@ export interface QuestionInterface {
 }
 
 export class Question {
+  public id: number;
   public title: string;
   public answers: Array<string>;
   public answer: string;
@@ -13,6 +15,7 @@ export class Question {
 
   constructor(questionInterface?: QuestionInterface) {
     if (questionInterface) {
+      this.id = questionInterface.id;
       this.title = questionInterface.title;
       this.answers = questionInterface.answers;
       this.answer = questionInterface.answer;

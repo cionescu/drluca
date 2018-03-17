@@ -40,8 +40,13 @@ export class AppComponent {
       .subscriptions
       .create({ channel: 'UserChannel', user: this.user.name, quiz: this.user.quiz }, {
         received: (data) => {
-          // console.log(data);
-          this.user.save();
+          for (let elem of data.message) {
+            if (this.user.name === elem.name) {
+              this.user.update(elem);
+              this.user.save();
+              return;
+            }
+          }
         }
       });
   }

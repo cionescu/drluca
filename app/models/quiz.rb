@@ -46,6 +46,7 @@ class Quiz < ApplicationRecord
       finished!
       Rails.logger.warn "FINISHED THE QUIZ"
       ActionCable.server.broadcast CHANNEL, finished: true
+      User.broadcast_for self
     else
       increment! :current_question
       broadcast_current_question

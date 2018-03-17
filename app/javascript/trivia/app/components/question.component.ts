@@ -46,6 +46,7 @@ export class QuestionComponent implements OnChanges {
 
   selected(event: any) {
     if (!this.selectedAnswer) {
+      // console.log(`Question-Selected emmiting ${event.srcElement.textContent}`)
       this.selectedAnswer = event.srcElement.textContent;
       this.onSelected.emit(this.selectedAnswer);
     }

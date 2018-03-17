@@ -6,7 +6,7 @@ import { Question } from '../models/question';
 @Component({
   selector: 'quiz',
   template: `
-    <p class="text-muted">{{user.name}}</p>
+    <user [user]="user"></user>
     <question [question]="question" [showAnswer]="showAnswer" [finished]="finished" (onSelected)="onSelected($event)"></question>
   `
 })
@@ -31,7 +31,7 @@ export class QuizComponent implements OnInit {
       .subscriptions
       .create({ channel: 'QuizChannel', user: this.user.name, quiz: this.user.quiz }, {
         received: (data) => {
-          console.log(data);
+          // console.log("Received in QuizChannel", data, this.question, this.showAnswer, this.selectedAnswer);
           if (data.finished) {
             this.showAnswer = true;
             (<any>window).setTimeout(() => {
@@ -43,7 +43,7 @@ export class QuizComponent implements OnInit {
           if (this.question === null) {
             this.question = _new_question;
           } else {
-            if (_new_question.title === this.question.title) {
+            if (_new_question.id === this.question.id) {
               return;
             }
             if (this.selectedAnswer) {
@@ -61,6 +61,7 @@ export class QuizComponent implements OnInit {
 
   onSelected(answer) {
     this.selectedAnswer = answer;
+    // console.log("OnSelected", answer, this.question.answer === answer);
     if (this.question.answer === answer) {
       this.ng2cable.subscription.perform('correct');
     } else {
