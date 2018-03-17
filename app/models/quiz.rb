@@ -24,10 +24,10 @@ class Quiz < ApplicationRecord
 
   def start_quiz!
     reset_user_scores
-    update!(current_question: 0, questions: questions.shuffle)
+    assign_questions(10)
+    update!(current_question: 0)
     in_progress!
-    question = Question.find(questions[0])
-    ActionCable.server.broadcast CHANNEL, QuestionSerializer.new(question).as_json
+    broadcast_current_question
   end
 
   def broadcast_current_question
@@ -38,20 +38,29 @@ class Quiz < ApplicationRecord
   end
 
   def next_question
-    Rails.logger.warn [current_question, questions.count].inspect
+    if users_still_need_to_answer?
+      Rails.logger.warn "There are #{users.online.count} users. They answered: #{users.online.map{|u| u.score.count}.join(',')} questions. Current: #{current_question}"
+      return
+    end
     if current_question == questions.count - 1
       finished!
       Rails.logger.warn "FINISHED THE QUIZ"
       ActionCable.server.broadcast CHANNEL, finished: true
     else
-      if users_still_need_to_answer?
-        Rails.logger.warn "Users Still need to answer"
-        Rails.logger.warn "There are #{users.online.count} users. They answered: #{users.online.map{|u| u.score.count}.join(',')} questions. Current: #{current_question}"
-        return
-      end
       increment! :current_question
       broadcast_current_question
     end
+  end
+
+  def assign_questions count
+    question_ids = []
+    category_count = Question.categories.count
+    while question_ids.count < count
+      category = Question.categories.key(rand(Question.categories.count))
+      question = Question.where.not(id: question_ids).where(category: category).order("random()").limit(1).first or next
+      question_ids << question.id
+    end
+    update!(questions: question_ids.shuffle)
   end
 
   private

@@ -6,6 +6,7 @@ import { Question } from '../models/question';
   template: `
     <div class="styled-container question-container" *ngIf="question && !finished">
       <h3 class="text-center">{{question.title}}</h3>
+      <img [src]="question.url" class="img image" *ngIf="question.url" />
       <div *ngIf="!showAnswer">
         <button
           class="button link"
