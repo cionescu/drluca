@@ -3,10 +3,11 @@ question {
 
   .question-container {
     .button {
-      margin: 10px 0;
-      padding: 15px 15px;
-      font-size: 25px;
+      margin: 5px 0;
+      padding: 5px 15px;
+      font-size: 28px;
       width: 100%;
+      white-space: normal;
 
       &:disabled {
         color: white;
@@ -19,6 +20,43 @@ question {
         border-color: #5ab9ea;
       }
     }
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .image {
+    margin: 1rem auto;
+    max-width: 200px;
+    max-height: 200px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.user-details {
+  margin: 0 15px 30px 15px !important;
+  box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+
+  .name {
+    display: inline-block;
+  }
+
+  p.score {
+    display: inline-block;
+  }
+
+  .fa-check {
+    color: #1aa56e;
+  }
+
+  .fa-times {
+    color: #d9534f;
+  }
+
+  .fa-trophy {
+    color: #5ab9ea;
   }
 }
 

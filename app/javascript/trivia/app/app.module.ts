@@ -6,12 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { QuizComponent } from './components/quiz.component';
 import { QuestionComponent } from './components/question.component';
+import { UserComponent } from './components/user.component';
+import { ResultsComponent } from './components/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizComponent,
-    QuestionComponent
+    QuestionComponent,
+    UserComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

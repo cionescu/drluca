@@ -20,7 +20,7 @@ gem 'morpheus-heroku', '0.3.1'
 gem 'sidekiq'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise'
-gem 'webpacker', '~> 2.0'
+gem 'webpacker', '~> 3.3.1'
 gem 'sentry-raven'
 gem 'pg_search'
 
