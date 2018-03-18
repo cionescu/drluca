@@ -40,7 +40,7 @@ export class AppComponent {
       .subscriptions
       .create({ channel: 'UserChannel', user: this.user.name, quiz: this.user.quiz }, {
         received: (data) => {
-          for (let elem of data.message) {
+          for (let elem of data) {
             if (this.user.name === elem.name) {
               this.user.update(elem);
               this.user.save();

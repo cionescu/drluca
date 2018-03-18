@@ -6,8 +6,9 @@ import { Question } from '../models/question';
 @Component({
   selector: 'quiz',
   template: `
-    <user [user]="user"></user>
+    <user [user]="user" *ngIf="!finished"></user>
     <question [question]="question" [showAnswer]="showAnswer" [finished]="finished" (onSelected)="onSelected($event)"></question>
+    <results [user]="user" *ngIf="finished"></results>
   `
 })
 export class QuizComponent implements OnInit {

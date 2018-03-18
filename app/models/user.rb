@@ -30,10 +30,10 @@ class User < ApplicationRecord
   }
 
   def self.broadcast_for quiz
-    users = quiz.users.online.map do |user|
+    users = quiz.users.online.sort_by{ |u| u.score.count }.reverse.map do |user|
       UserSerializer.new(user).as_json
     end
-    ActionCable.server.broadcast User::CHANNEL, message: users
+    ActionCable.server.broadcast User::CHANNEL, users
   end
 
   def answered answer

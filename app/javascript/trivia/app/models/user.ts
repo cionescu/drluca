@@ -31,6 +31,10 @@ export class User {
       this.totalScore = userInterface.total_score;
       this.correct = userInterface.correct;
       this.wrong = userInterface.wrong;
+      if (this.name === null && this.quiz === null) {
+        this.name = userInterface.name;
+        this.quiz = userInterface.quiz;
+      }
     }
   }
 

@@ -6,7 +6,7 @@ import { Question } from '../models/question';
   template: `
     <div class="styled-container question-container" *ngIf="question && !finished">
       <h3 class="text-center">{{question.title}}</h3>
-      <img [src]="question.url" class="img image" *ngIf="question.url" />
+      <img [src]="question.url" class="img image" *ngIf="question.url && !hideImg" />
       <div *ngIf="!showAnswer">
         <button
           class="button link"
@@ -28,9 +28,6 @@ import { Question } from '../models/question';
            >{{answer}}</button>
       </div>
     </div>
-    <div *ngIf="question && finished">
-      Ai terminat!
-    </div>
   `
 })
 export class QuestionComponent implements OnChanges {
@@ -39,6 +36,7 @@ export class QuestionComponent implements OnChanges {
   @Input() finished: boolean;
   @Output() onSelected = new EventEmitter();
   public selectedAnswer: string;
+  public hideImg = false;
 
   constructor() {
     this.selectedAnswer = null;
@@ -49,12 +47,14 @@ export class QuestionComponent implements OnChanges {
       // console.log(`Question-Selected emmiting ${event.srcElement.textContent}`)
       this.selectedAnswer = event.srcElement.textContent;
       this.onSelected.emit(this.selectedAnswer);
+      this.hideImg = true;
     }
   }
 
   ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
     if (changes.question) {
       this.selectedAnswer = null;
+      this.hideImg = false;
     }
   }
 }

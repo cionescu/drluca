@@ -13,7 +13,7 @@ module Fetchers
     def find_incorrect_answers key, correct_answer
       json_data.select do |country|
         country[key] != correct_answer
-      end.map do |country|
+      end.uniq.map do |country|
         country[key]
       end.shuffle.sample(3)
     end
