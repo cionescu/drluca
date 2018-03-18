@@ -22,9 +22,9 @@ class Quiz < ApplicationRecord
     finished: 2
   }
 
-  def start_quiz!
+  def start_quiz! count = 10
     reset_user_scores
-    assign_questions(10)
+    assign_questions(count)
     update!(current_question: 0)
     in_progress!
     broadcast_current_question

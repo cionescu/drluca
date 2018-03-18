@@ -17,6 +17,8 @@ class Question < ApplicationRecord
   enum category: {
     general: 0,
     capitals: 1,
-    flags: 2
+    flags: 2,
+    painter: 3,
+    art_work: 4
   }
 end
