@@ -62,7 +62,6 @@ export class QuizComponent implements OnInit {
 
   onSelected(answer) {
     this.selectedAnswer = answer;
-    // console.log("OnSelected", answer, this.question.answer === answer);
     if (this.question.answer === answer) {
       this.ng2cable.subscription.perform('correct');
     } else {

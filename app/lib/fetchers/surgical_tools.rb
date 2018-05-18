@@ -4,7 +4,7 @@ module Fetchers
       Question.surgical_tools.delete_all
       photos.each do |photo|
         Question.create!(
-          title: "Cum se numeste instrumentul chirurgical?",
+          title: nil,
           url: photo[:url],
           answer: photo[:name],
           incorrect_answers: get_three_incorrect_answers(photo[:name]),

@@ -32,6 +32,7 @@ export class AppComponent {
     this.ng2cable.setCable(`ws://${(<any>window).host}/cable`);
     this.user = new User();
     this.options = (<any>window).quizzes;
+    (<any>document).getElementById("page-loader").style.display = "none";
   }
 
   submit() {

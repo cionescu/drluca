@@ -5,7 +5,7 @@ import { Question } from '../models/question';
   selector: 'question',
   template: `
     <div class="styled-container question-container" *ngIf="question && !finished">
-      <h3 class="text-center">{{question.title}}</h3>
+      <h3 class="text-center" *ngIf="question.title">{{question.title}}</h3>
       <img [src]="question.url" class="img image" *ngIf="question.url && !hideImg" />
       <div *ngIf="!showAnswer">
         <button
@@ -52,6 +52,7 @@ export class QuestionComponent implements OnChanges {
   }
 
   ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
+    console.log(changes, this.selectedAnswer)
     if (changes.question) {
       this.selectedAnswer = null;
       this.hideImg = false;
