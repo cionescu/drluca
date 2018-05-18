@@ -30,6 +30,14 @@ class Quiz < ApplicationRecord
     broadcast_current_question
   end
 
+  def start_themed_quiz! category: :surgical_tools, count: 20
+    reset_user_scores
+    assign_themed_questions(category, count)
+    update!(current_question: 0)
+    in_progress!
+    broadcast_current_question
+  end
+
   def broadcast_current_question
     return unless in_progress? && current_question.present?
     question = Question.find(questions[current_question])
@@ -62,6 +70,10 @@ class Quiz < ApplicationRecord
       question_ids << question.id
     end
     update!(questions: question_ids.shuffle)
+  end
+
+  def assign_themed_questions category, count
+    update!(questions: Question.where(category: category).order("random()").limit(count).pluck(:id))
   end
 
   private
