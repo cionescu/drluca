@@ -58,7 +58,7 @@ class Quiz < ApplicationRecord
     category_count = Question.categories.count
     while question_ids.count < count
       category = Question.categories.key(rand(Question.categories.count))
-      question = Question.where.not(id: question_ids).where(category: category).order("random()").limit(1).first or next
+      question = Question.where.not(id: question_ids).where(category: category).order("random()").first or next
       question_ids << question.id
     end
     update!(questions: question_ids.shuffle)

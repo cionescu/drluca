@@ -19,6 +19,7 @@ class Question < ApplicationRecord
     capitals: 1,
     flags: 2,
     painter: 3,
-    art_work: 4
+    art_work: 4,
+    surgical_tools: 5
   }
 end
