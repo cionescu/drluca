@@ -4,7 +4,7 @@ module Fetchers
 
     DOMAIN = "https://www.brushwiz.com"
     FILE_PATH = Rails.root.join("config", "data", "paintings.json").freeze
-    IMAGE_PATH = RAILS.root.join("public", "paintings").freeze
+    IMAGE_PATH = Rails.root.join("public", "paintings").freeze
 
     def call run_local = false
       @json_data = if run_local
