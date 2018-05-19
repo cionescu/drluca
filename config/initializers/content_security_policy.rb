@@ -5,11 +5,7 @@
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
 
 Rails.application.config.content_security_policy do |policy|
-  if Rails.env.development?
-    policy.script_src :self, :https, :unsafe_eval, :unsafe_inline
-  else
-    policy.script_src :self, :https
-  end
+  policy.script_src :self, :https, :unsafe_eval, :unsafe_inline
 end
 #   policy.default_src :self, :https
 #   policy.font_src    :self, :https, :data
